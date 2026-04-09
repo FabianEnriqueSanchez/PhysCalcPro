@@ -4,9 +4,8 @@ Software de calculo y analisis de propiedades fisicas industriales para **TecnoI
 
 ## Demo en vivo
 
-👉 **[Abrir PhysCalc Pro](https://<tu-usuario>.github.io/PhysCalc-Pro/)**
+👉 **[Abrir PhysCalc Pro](https://fabianenriquesanchez.github.io/PhysCalcPro)**
 
-> Reemplaza `<tu-usuario>` con tu nombre de usuario de GitHub despues de configurar GitHub Pages.
 
 ## Modulos disponibles
 
@@ -44,7 +43,7 @@ PhysCalc-Pro/
 1. Sube este repositorio a GitHub
 2. Ve a **Settings > Pages**
 3. En "Source" selecciona **main** y **/ (root)**
-4. Tu sitio estara disponible en `https://<tu-usuario>.github.io/PhysCalc-Pro/`
+4. Tu sitio estara disponible en `https://fabianenriquesanchez.github.io/PhysCalcPro`
 
 ## Proyecto SENA
 
