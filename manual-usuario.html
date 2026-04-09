@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhysCalc Pro - Manual de Usuario</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/manual.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">Phys<span>Calc</span> Pro</a>
+    <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="app.html">Calculadora</a>
+      <a href="manual-tecnico.html">Manual Tecnico</a>
+    </nav>
+  </header>
+
+  <div class="manual">
+
+    <!-- PORTADA -->
+    <div class="manual-hero">
+      <h1>Manual de Usuario</h1>
+      <p>PhysCalc Pro &mdash; Calculadora de Propiedades Fisicas Industriales</p>
+      <div class="manual-meta">
+        <span>Version 1.0</span>
+        <span>|</span>
+        <span>Abril 2026</span>
+        <span>|</span>
+        <span>TecnoIndustria S.A.S.</span>
+      </div>
+    </div>
+
+    <div class="manual-body">
+
+      <!-- INDICE -->
+      <div class="manual-section" id="indice">
+        <h2>Tabla de Contenido</h2>
+        <ol class="toc">
+          <li><a href="#introduccion">Introduccion</a></li>
+          <li><a href="#requisitos">Requisitos del sistema</a></li>
+          <li><a href="#acceso">Como acceder a la aplicacion</a></li>
+          <li><a href="#interfaz">Descripcion de la interfaz</a></li>
+          <li><a href="#uso-general">Uso general de la calculadora</a></li>
+          <li><a href="#mod-calor">Modulo 1: Calor (Energia Termica)</a></li>
+          <li><a href="#mod-temp">Modulo 2: Conversion de Temperatura</a></li>
+          <li><a href="#mod-presion">Modulo 3: Presion</a></li>
+          <li><a href="#mod-caudal-vol">Modulo 4: Caudal Volumetrico</a></li>
+          <li><a href="#mod-caudal-av">Modulo 5: Caudal por Area y Velocidad</a></li>
+          <li><a href="#mod-energia">Modulo 6: Energia Potencial Gravitatoria</a></li>
+          <li><a href="#mod-eficiencia">Modulo 7: Eficiencia Energetica</a></li>
+          <li><a href="#historial">Historial de calculos</a></li>
+          <li><a href="#tabla-referencia">Tabla de valores de referencia</a></li>
+          <li><a href="#errores">Mensajes de error comunes</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ol>
+      </div>
+
+      <!-- 1. INTRODUCCION -->
+      <div class="manual-section" id="introduccion">
+        <h2>1. Introduccion</h2>
+        <p>
+          <strong>PhysCalc Pro</strong> es una aplicacion web disenada para calcular, analizar y resolver
+          propiedades fisicas utilizadas en procesos industriales. Fue desarrollada como solucion tecnologica
+          para <strong>TecnoIndustria S.A.S.</strong>, empresa dedicada a la produccion y distribucion de materiales industriales.
+        </p>
+        <p>La aplicacion permite resolver <strong>7 tipos de calculos fisicos</strong>:</p>
+        <ul>
+          <li>Calor (energia termica)</li>
+          <li>Conversion de temperatura</li>
+          <li>Presion</li>
+          <li>Caudal volumetrico</li>
+          <li>Caudal por area y velocidad</li>
+          <li>Energia potencial gravitatoria</li>
+          <li>Eficiencia energetica</li>
+        </ul>
+        <div class="manual-tip">
+          <strong>Caracteristica clave:</strong> En cada modulo puedes elegir <em>cual variable despejar</em>.
+          No solo calculas el resultado de la formula, sino que puedes resolver para cualquiera de sus variables.
+        </div>
+      </div>
+
+      <!-- 2. REQUISITOS -->
+      <div class="manual-section" id="requisitos">
+        <h2>2. Requisitos del Sistema</h2>
+        <table class="manual-table">
+          <tr><th>Requisito</th><th>Especificacion</th></tr>
+          <tr><td>Navegador web</td><td>Google Chrome 80+, Firefox 75+, Edge 80+, Safari 13+</td></tr>
+          <tr><td>Conexion a internet</td><td>Solo para acceder a GitHub Pages. Funciona offline una vez cargada.</td></tr>
+          <tr><td>Dispositivo</td><td>PC, laptop, tablet o celular</td></tr>
+          <tr><td>Resolucion minima</td><td>320px de ancho (responsive)</td></tr>
+          <tr><td>Instalacion</td><td>No requiere instalacion</td></tr>
+          <tr><td>Registro</td><td>No requiere cuenta ni registro</td></tr>
+        </table>
+      </div>
+
+      <!-- 3. ACCESO -->
+      <div class="manual-section" id="acceso">
+        <h2>3. Como Acceder a la Aplicacion</h2>
+        <div class="manual-steps">
+          <div class="manual-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Abre tu navegador web</h4>
+              <p>Chrome, Firefox, Edge o Safari en cualquier dispositivo.</p>
+            </div>
+          </div>
+          <div class="manual-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Ingresa la URL</h4>
+              <p>Visita la pagina del proyecto en GitHub Pages o abre el archivo <code>index.html</code> localmente.</p>
+            </div>
+          </div>
+          <div class="manual-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Haz clic en "Probar el Demo"</h4>
+              <p>Desde la pagina principal (blog), presiona el boton verde para abrir la calculadora.</p>
+            </div>
+          </div>
+          <div class="manual-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Selecciona un modulo</h4>
+              <p>Usa las pestanas superiores para elegir el tipo de calculo que necesitas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. INTERFAZ -->
+      <div class="manual-section" id="interfaz">
+        <h2>4. Descripcion de la Interfaz</h2>
+        <p>La calculadora se compone de los siguientes elementos:</p>
+
+        <div class="interface-parts">
+          <div class="interface-part">
+            <h4>A. Barra de navegacion</h4>
+            <p>En la parte superior. Contiene el logo y un enlace para volver a la pagina principal (blog).</p>
+          </div>
+          <div class="interface-part">
+            <h4>B. Pestanas de modulos</h4>
+            <p>7 botones horizontales: Calor, Temperatura, Presion, Caudal Vol., Caudal A&times;v, Energia Pot. y Eficiencia. Al hacer clic en uno se muestra su panel.</p>
+          </div>
+          <div class="interface-part">
+            <h4>C. Panel de calculo</h4>
+            <p>Contiene: titulo, formula, descripcion, selector "Resolver para", campos de entrada, boton de calcular y caja de resultado.</p>
+          </div>
+          <div class="interface-part">
+            <h4>D. Selector "Resolver para"</h4>
+            <p>Cuadro azul/verde que permite elegir cual variable quieres calcular. Al cambiarlo, la formula se reorganiza y el campo objetivo se marca con borde verde punteado.</p>
+          </div>
+          <div class="interface-part">
+            <h4>E. Campos de entrada</h4>
+            <p>Cada campo indica: nombre de la variable, simbolo, unidad de medida y restricciones. Los campos con borde rojo tienen un valor invalido.</p>
+          </div>
+          <div class="interface-part">
+            <h4>F. Boton de calcular</h4>
+            <p>Aparece en gris (deshabilitado) hasta que todos los campos tengan valores validos. Se activa en azul cuando esta listo.</p>
+          </div>
+          <div class="interface-part">
+            <h4>G. Caja de resultado</h4>
+            <p>Muestra el resultado con el valor numerico, la unidad y el detalle del calculo paso a paso.</p>
+          </div>
+          <div class="interface-part">
+            <h4>H. Historial</h4>
+            <p>Debajo de los paneles. Guarda los ultimos 10 calculos realizados con hora, modulo, resultado y formula usada.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. USO GENERAL -->
+      <div class="manual-section" id="uso-general">
+        <h2>5. Uso General de la Calculadora</h2>
+        <div class="manual-steps">
+          <div class="manual-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Selecciona el modulo</h4>
+              <p>Haz clic en la pestana correspondiente al calculo que necesitas.</p>
+            </div>
+          </div>
+          <div class="manual-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Elige que variable resolver</h4>
+              <p>Usa el selector "Resolver para:" para indicar cual variable quieres calcular. La formula se reordena automaticamente.</p>
+            </div>
+          </div>
+          <div class="manual-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Ingresa los valores conocidos</h4>
+              <p>Escribe los datos en los campos activos (fondo blanco). El campo objetivo (fondo verde, borde punteado) se llenara con el resultado.</p>
+            </div>
+          </div>
+          <div class="manual-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Verifica la validacion</h4>
+              <p>Si un campo se marca en rojo, corrige el valor. El mensaje debajo del campo te indica que esta mal. El boton se habilita solo cuando todos los campos son validos.</p>
+            </div>
+          </div>
+          <div class="manual-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Presiona "Calcular"</h4>
+              <p>El resultado aparece en la caja verde y se guarda en el historial. El campo objetivo tambien muestra el valor calculado.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="manual-warning">
+          <strong>Importante:</strong> La validacion es en tiempo real. Mientras escribes, el sistema verifica
+          que los valores sean fisicamente coherentes (no negativos donde no aplica, no cero en denominadores, etc.).
+        </div>
+      </div>
+
+      <!-- 6. MODULO CALOR -->
+      <div class="manual-section" id="mod-calor">
+        <h2>6. Modulo 1: Calor (Energia Termica)</h2>
+        <div class="formula-box">Q = m &middot; c &middot; &Delta;T</div>
+        <p>Calcula la energia termica necesaria para calentar o enfriar una sustancia.</p>
+
+        <h3>Variables</h3>
+        <table class="manual-table">
+          <tr><th>Variable</th><th>Descripcion</th><th>Unidad</th><th>Restriccion</th></tr>
+          <tr><td><strong>Q</strong></td><td>Calor (energia termica)</td><td>Joules (J)</td><td>Puede ser negativo (enfriamiento)</td></tr>
+          <tr><td><strong>m</strong></td><td>Masa de la sustancia</td><td>Kilogramos (kg)</td><td>Debe ser &gt; 0</td></tr>
+          <tr><td><strong>c</strong></td><td>Calor especifico del material</td><td>J/(kg&middot;&deg;C)</td><td>Debe ser &gt; 0</td></tr>
+          <tr><td><strong>&Delta;T</strong></td><td>Cambio de temperatura (final - inicial)</td><td>&deg;C</td><td>No puede ser 0. Negativo = enfriamiento</td></tr>
+        </table>
+
+        <h3>Formulas segun variable a resolver</h3>
+        <table class="manual-table">
+          <tr><th>Resolver para</th><th>Formula despejada</th></tr>
+          <tr><td>Q (Calor)</td><td>Q = m &middot; c &middot; &Delta;T</td></tr>
+          <tr><td>m (Masa)</td><td>m = Q / (c &middot; &Delta;T)</td></tr>
+          <tr><td>c (Calor especifico)</td><td>c = Q / (m &middot; &Delta;T)</td></tr>
+          <tr><td>&Delta;T (Cambio de temp.)</td><td>&Delta;T = Q / (m &middot; c)</td></tr>
+        </table>
+
+        <h3>Ejemplo practico</h3>
+        <div class="manual-example">
+          <p><strong>Problema:</strong> ¿Cuanta energia se necesita para calentar 5 kg de agua de 20&deg;C a 80&deg;C?</p>
+          <ul>
+            <li>Resolver para: <strong>Q</strong></li>
+            <li>m = 5 kg</li>
+            <li>c = 4186 J/(kg&middot;&deg;C) (agua)</li>
+            <li>&Delta;T = 80 - 20 = 60&deg;C</li>
+          </ul>
+          <p><strong>Resultado:</strong> Q = 5 &times; 4186 &times; 60 = <strong>1,255,800 J</strong> (1,255.8 kJ)</p>
+          <p>El sistema absorbe calor (calentamiento).</p>
+        </div>
+
+        <div class="manual-example">
+          <p><strong>Problema inverso:</strong> Si se transfirieron 500,000 J a 10 kg de un metal y la temperatura subio 50&deg;C, ¿cual es el calor especifico del metal?</p>
+          <ul>
+            <li>Resolver para: <strong>c</strong></li>
+            <li>Q = 500000 J</li>
+            <li>m = 10 kg</li>
+            <li>&Delta;T = 50&deg;C</li>
+          </ul>
+          <p><strong>Resultado:</strong> c = 500000 / (10 &times; 50) = <strong>1000 J/(kg&middot;&deg;C)</strong></p>
+        </div>
+
+        <h3>Valores de calor especifico comunes</h3>
+        <table class="manual-table">
+          <tr><th>Material</th><th>c en J/(kg&middot;&deg;C)</th></tr>
+          <tr><td>Agua</td><td>4186</td></tr>
+          <tr><td>Aluminio</td><td>897</td></tr>
+          <tr><td>Hierro / Acero</td><td>450</td></tr>
+          <tr><td>Cobre</td><td>385</td></tr>
+          <tr><td>Plomo</td><td>128</td></tr>
+          <tr><td>Vidrio</td><td>840</td></tr>
+          <tr><td>Aceite industrial</td><td>1800 - 2000</td></tr>
+          <tr><td>Concreto</td><td>880</td></tr>
+        </table>
+      </div>
+
+      <!-- 7. MODULO TEMPERATURA -->
+      <div class="manual-section" id="mod-temp">
+        <h2>7. Modulo 2: Conversion de Temperatura</h2>
+        <div class="formula-box">&deg;C = (&deg;F - 32) / 1.8 &nbsp;&nbsp;|&nbsp;&nbsp; K = &deg;C + 273.15</div>
+        <p>Convierte un valor de temperatura entre las tres escalas: Celsius, Fahrenheit y Kelvin.</p>
+
+        <h3>Escalas de temperatura</h3>
+        <table class="manual-table">
+          <tr><th>Escala</th><th>Simbolo</th><th>Punto de congelacion del agua</th><th>Punto de ebullicion del agua</th><th>Cero absoluto</th></tr>
+          <tr><td>Celsius</td><td>&deg;C</td><td>0 &deg;C</td><td>100 &deg;C</td><td>-273.15 &deg;C</td></tr>
+          <tr><td>Fahrenheit</td><td>&deg;F</td><td>32 &deg;F</td><td>212 &deg;F</td><td>-459.67 &deg;F</td></tr>
+          <tr><td>Kelvin</td><td>K</td><td>273.15 K</td><td>373.15 K</td><td>0 K</td></tr>
+        </table>
+
+        <h3>Como usarlo</h3>
+        <ol>
+          <li><strong>Primero</strong> selecciona la escala en la que esta tu dato (Celsius, Fahrenheit o Kelvin).</li>
+          <li><strong>Luego</strong> escribe el valor numerico en el campo.</li>
+          <li>Presiona <strong>"Convertir Temperatura"</strong>.</li>
+          <li>El resultado muestra las <strong>tres escalas simultaneamente</strong>.</li>
+        </ol>
+
+        <h3>Restriccion</h3>
+        <div class="manual-warning">
+          No se puede ingresar un valor por debajo del <strong>cero absoluto</strong> (la temperatura mas baja fisicamente posible):
+          -273.15 &deg;C, -459.67 &deg;F o 0 K.
+        </div>
+
+        <h3>Ejemplo</h3>
+        <div class="manual-example">
+          <p><strong>Entrada:</strong> 350 &deg;F (temperatura de un horno industrial)</p>
+          <p><strong>Resultado:</strong> 176.67 &deg;C = 350 &deg;F = 449.82 K</p>
+        </div>
+
+        <h3>Temperaturas de referencia industrial</h3>
+        <table class="manual-table">
+          <tr><th>Proceso / Material</th><th>&deg;C</th><th>&deg;F</th><th>K</th></tr>
+          <tr><td>Congelacion del agua</td><td>0</td><td>32</td><td>273.15</td></tr>
+          <tr><td>Temperatura ambiente estandar</td><td>25</td><td>77</td><td>298.15</td></tr>
+          <tr><td>Ebullicion del agua (nivel del mar)</td><td>100</td><td>212</td><td>373.15</td></tr>
+          <tr><td>Soldadura de estano</td><td>183</td><td>361</td><td>456</td></tr>
+          <tr><td>Horno de templado de acero</td><td>800 - 900</td><td>1472 - 1652</td><td>1073 - 1173</td></tr>
+          <tr><td>Fusion del aluminio</td><td>660</td><td>1220</td><td>933</td></tr>
+          <tr><td>Fusion del hierro</td><td>1538</td><td>2800</td><td>1811</td></tr>
+        </table>
+      </div>
+
+      <!-- 8. MODULO PRESION -->
+      <div class="manual-section" id="mod-presion">
+        <h2>8. Modulo 3: Presion</h2>
+        <div class="formula-box">P = F / A</div>
+        <p>Calcula la presion ejercida por una fuerza sobre una superficie, o despeja la fuerza o el area.</p>
+
+        <h3>Variables</h3>
+        <table class="manual-table">
+          <tr><th>Variable</th><th>Descripcion</th><th>Unidad</th><th>Restriccion</th></tr>
+          <tr><td><strong>P</strong></td><td>Presion</td><td>Pascales (Pa)</td><td>Debe ser &ge; 0</td></tr>
+          <tr><td><strong>F</strong></td><td>Fuerza aplicada</td><td>Newtons (N)</td><td>Debe ser &ge; 0</td></tr>
+          <tr><td><strong>A</strong></td><td>Area de la superficie</td><td>Metros cuadrados (m&sup2;)</td><td>Debe ser &gt; 0</td></tr>
+        </table>
+
+        <h3>Formulas segun variable a resolver</h3>
+        <table class="manual-table">
+          <tr><th>Resolver para</th><th>Formula</th></tr>
+          <tr><td>P (Presion)</td><td>P = F / A</td></tr>
+          <tr><td>F (Fuerza)</td><td>F = P &middot; A</td></tr>
+          <tr><td>A (Area)</td><td>A = F / P</td></tr>
+        </table>
+
+        <h3>Ejemplo practico</h3>
+        <div class="manual-example">
+          <p><strong>Problema:</strong> Una prensa hidraulica aplica 50,000 N sobre un piston de 0.02 m&sup2;. ¿Cual es la presion?</p>
+          <ul>
+            <li>Resolver para: <strong>P</strong></li>
+            <li>F = 50000 N</li>
+            <li>A = 0.02 m&sup2;</li>
+          </ul>
+          <p><strong>Resultado:</strong> P = 50000 / 0.02 = <strong>2,500,000 Pa</strong> (2.5 MPa = ~24.7 atm)</p>
+        </div>
+
+        <h3>Equivalencias de presion</h3>
+        <table class="manual-table">
+          <tr><th>Unidad</th><th>Equivalencia en Pa</th></tr>
+          <tr><td>1 atmosfera (atm)</td><td>101,325 Pa</td></tr>
+          <tr><td>1 bar</td><td>100,000 Pa</td></tr>
+          <tr><td>1 PSI (lb/in&sup2;)</td><td>6,894.76 Pa</td></tr>
+          <tr><td>1 mmHg (torr)</td><td>133.32 Pa</td></tr>
+        </table>
+      </div>
+
+      <!-- 9. MODULO CAUDAL VOL -->
+      <div class="manual-section" id="mod-caudal-vol">
+        <h2>9. Modulo 4: Caudal Volumetrico</h2>
+        <div class="formula-box">Q = V / t</div>
+        <p>Determina el volumen de fluido que pasa por un punto en un tiempo dado.</p>
+
+        <h3>Variables</h3>
+        <table class="manual-table">
+          <tr><th>Variable</th><th>Descripcion</th><th>Unidad</th><th>Restriccion</th></tr>
+          <tr><td><strong>Q</strong></td><td>Caudal (flujo volumetrico)</td><td>m&sup3;/s</td><td>Debe ser &gt; 0</td></tr>
+          <tr><td><strong>V</strong></td><td>Volumen del fluido</td><td>m&sup3;</td><td>Debe ser &gt; 0</td></tr>
+          <tr><td><strong>t</strong></td><td>Tiempo transcurrido</td><td>Segundos (s)</td><td>Debe ser &gt; 0</td></tr>
+        </table>
+
+        <h3>Formulas</h3>
+        <table class="manual-table">
+          <tr><td>Q = V / t</td><td>V = Q &middot; t</td><td>t = V / Q</td></tr>
+        </table>
+
+        <h3>Ejemplo</h3>
+        <div class="manual-example">
+          <p><strong>Problema:</strong> En 60 segundos pasan 0.3 m&sup3; de agua por una tuberia. ¿Cual es el caudal?</p>
+          <p><strong>Resultado:</strong> Q = 0.3 / 60 = <strong>0.005 m&sup3;/s</strong> (5 litros/s)</p>
+        </div>
+        <div class="manual-example">
+          <p><strong>Problema inverso:</strong> ¿Cuanto tiempo tarda en pasar 2 m&sup3; a un caudal de 0.01 m&sup3;/s?</p>
+          <p><strong>Resultado:</strong> t = 2 / 0.01 = <strong>200 segundos</strong> (3 min 20 s)</p>
+        </div>
+
+        <h3>Equivalencias</h3>
+        <table class="manual-table">
+          <tr><th>Unidad</th><th>Equivalencia</th></tr>
+          <tr><td>1 m&sup3;/s</td><td>1000 litros/s</td></tr>
+          <tr><td>1 litro/s</td><td>0.001 m&sup3;/s</td></tr>
+          <tr><td>1 m&sup3;/h</td><td>0.000278 m&sup3;/s</td></tr>
+          <tr><td>1 galon/min (GPM)</td><td>0.0000631 m&sup3;/s</td></tr>
+        </table>
+      </div>
+
+      <!-- 10. MODULO CAUDAL A×v -->
+      <div class="manual-section" id="mod-caudal-av">
+        <h2>10. Modulo 5: Caudal por Area y Velocidad</h2>
+        <div class="formula-box">Q = A &middot; v</div>
+        <p>Relaciona el caudal con la seccion transversal de la tuberia y la velocidad del fluido.</p>
+
+        <h3>Variables</h3>
+        <table class="manual-table">
+          <tr><th>Variable</th><th>Descripcion</th><th>Unidad</th><th>Restriccion</th></tr>
+          <tr><td><strong>Q</strong></td><td>Caudal</td><td>m&sup3;/s</td><td>Debe ser &gt; 0</td></tr>
+          <tr><td><strong>A</strong></td><td>Area de la seccion transversal</td><td>m&sup2;</td><td>Debe ser &gt; 0</td></tr>
+          <tr><td><strong>v</strong></td><td>Velocidad del fluido</td><td>m/s</td><td>Debe ser &gt; 0</td></tr>
+        </table>
+
+        <h3>Formulas</h3>
+        <table class="manual-table">
+          <tr><td>Q = A &middot; v</td><td>A = Q / v</td><td>v = Q / A</td></tr>
+        </table>
+
+        <h3>Ejemplo</h3>
+        <div class="manual-example">
+          <p><strong>Problema:</strong> Una tuberia tiene seccion de 0.05 m&sup2; y el agua fluye a 3 m/s. ¿Cual es el caudal?</p>
+          <p><strong>Resultado:</strong> Q = 0.05 &times; 3 = <strong>0.15 m&sup3;/s</strong> (150 litros/s)</p>
+        </div>
+        <div class="manual-example">
+          <p><strong>Problema inverso:</strong> Necesitas un caudal de 0.02 m&sup3;/s con una velocidad maxima de 2 m/s. ¿Que area de tuberia necesitas?</p>
+          <p><strong>Resultado:</strong> A = 0.02 / 2 = <strong>0.01 m&sup2;</strong> (diametro ~11.3 cm)</p>
+        </div>
+
+        <h3>Area de tuberias comunes</h3>
+        <table class="manual-table">
+          <tr><th>Diametro nominal</th><th>Area interna aprox. (m&sup2;)</th></tr>
+          <tr><td>1 pulgada (25 mm)</td><td>0.000507</td></tr>
+          <tr><td>2 pulgadas (50 mm)</td><td>0.00203</td></tr>
+          <tr><td>4 pulgadas (100 mm)</td><td>0.00811</td></tr>
+          <tr><td>6 pulgadas (150 mm)</td><td>0.01824</td></tr>
+          <tr><td>8 pulgadas (200 mm)</td><td>0.03243</td></tr>
+        </table>
+      </div>
+
+      <!-- 11. MODULO ENERGIA -->
+      <div class="manual-section" id="mod-energia">
+        <h2>11. Modulo 6: Energia Potencial Gravitatoria</h2>
+        <div class="formula-box">Ep = m &middot; g &middot; h</div>
+        <p>Calcula la energia almacenada por un objeto debido a su posicion a cierta altura.</p>
+
+        <h3>Variables</h3>
+        <table class="manual-table">
+          <tr><th>Variable</th><th>Descripcion</th><th>Unidad</th><th>Restriccion</th></tr>
+          <tr><td><strong>Ep</strong></td><td>Energia potencial</td><td>Joules (J)</td><td>Debe ser &ge; 0</td></tr>
+          <tr><td><strong>m</strong></td><td>Masa del objeto</td><td>kg</td><td>Debe ser &gt; 0</td></tr>
+          <tr><td><strong>g</strong></td><td>Aceleracion gravitacional</td><td>m/s&sup2;</td><td>Entre 0.1 y 30</td></tr>
+          <tr><td><strong>h</strong></td><td>Altura sobre el punto de referencia</td><td>m</td><td>Debe ser &ge; 0</td></tr>
+        </table>
+
+        <h3>Formulas</h3>
+        <table class="manual-table">
+          <tr><td>Ep = m &middot; g &middot; h</td><td>m = Ep / (g &middot; h)</td></tr>
+          <tr><td>g = Ep / (m &middot; h)</td><td>h = Ep / (m &middot; g)</td></tr>
+        </table>
+
+        <h3>Ejemplo</h3>
+        <div class="manual-example">
+          <p><strong>Problema:</strong> Un montacargas eleva 200 kg a 12 metros de altura. ¿Cual es la energia potencial?</p>
+          <p><strong>Resultado:</strong> Ep = 200 &times; 9.8 &times; 12 = <strong>23,520 J</strong> (23.52 kJ)</p>
+        </div>
+        <div class="manual-example">
+          <p><strong>Problema inverso:</strong> Se necesitan 49,000 J para elevar una carga a 10 m. ¿Cual es la masa?</p>
+          <p><strong>Resultado:</strong> m = 49000 / (9.8 &times; 10) = <strong>500 kg</strong></p>
+        </div>
+
+        <h3>Gravedad en diferentes cuerpos</h3>
+        <table class="manual-table">
+          <tr><th>Cuerpo</th><th>g (m/s&sup2;)</th></tr>
+          <tr><td>Tierra</td><td>9.8</td></tr>
+          <tr><td>Luna</td><td>1.6</td></tr>
+          <tr><td>Marte</td><td>3.7</td></tr>
+          <tr><td>Jupiter</td><td>24.8</td></tr>
+          <tr><td>Venus</td><td>8.87</td></tr>
+        </table>
+      </div>
+
+      <!-- 12. MODULO EFICIENCIA -->
+      <div class="manual-section" id="mod-eficiencia">
+        <h2>12. Modulo 7: Eficiencia Energetica</h2>
+        <div class="formula-box">&eta; = (E<sub>util</sub> / E<sub>total</sub>) &times; 100</div>
+        <p>Mide el porcentaje de energia aprovechada vs la energia total suministrada.</p>
+
+        <h3>Variables</h3>
+        <table class="manual-table">
+          <tr><th>Variable</th><th>Descripcion</th><th>Unidad</th><th>Restriccion</th></tr>
+          <tr><td><strong>&eta;</strong></td><td>Eficiencia</td><td>%</td><td>0% a 100%</td></tr>
+          <tr><td><strong>E<sub>util</sub></strong></td><td>Energia util (aprovechada)</td><td>J</td><td>Debe ser &ge; 0</td></tr>
+          <tr><td><strong>E<sub>total</sub></strong></td><td>Energia total (suministrada)</td><td>J</td><td>Debe ser &gt; 0</td></tr>
+        </table>
+
+        <h3>Restriccion especial</h3>
+        <div class="manual-warning">
+          Segun la <strong>ley de conservacion de la energia</strong>, la energia util nunca puede ser mayor
+          que la energia total. Por lo tanto, la eficiencia nunca supera el 100%.
+        </div>
+
+        <h3>Clasificacion de rendimiento</h3>
+        <table class="manual-table">
+          <tr><th>Rango</th><th>Clasificacion</th></tr>
+          <tr><td>80% - 100%</td><td>Excelente rendimiento</td></tr>
+          <tr><td>50% - 79%</td><td>Rendimiento aceptable</td></tr>
+          <tr><td>25% - 49%</td><td>Rendimiento bajo &mdash; requiere optimizacion</td></tr>
+          <tr><td>0% - 24%</td><td>Rendimiento critico &mdash; revision urgente</td></tr>
+        </table>
+
+        <h3>Ejemplo</h3>
+        <div class="manual-example">
+          <p><strong>Problema:</strong> Un motor consume 10,000 J y produce 7,500 J de trabajo util. ¿Cual es su eficiencia?</p>
+          <p><strong>Resultado:</strong> &eta; = (7500 / 10000) &times; 100 = <strong>75%</strong> &mdash; Rendimiento aceptable</p>
+        </div>
+
+        <h3>Eficiencias tipicas</h3>
+        <table class="manual-table">
+          <tr><th>Sistema</th><th>Eficiencia tipica</th></tr>
+          <tr><td>Motor electrico</td><td>85% - 95%</td></tr>
+          <tr><td>Motor de combustion interna</td><td>25% - 40%</td></tr>
+          <tr><td>Panel solar fotovoltaico</td><td>15% - 22%</td></tr>
+          <tr><td>Bombilla LED</td><td>80% - 90%</td></tr>
+          <tr><td>Bombilla incandescente</td><td>5% - 10%</td></tr>
+          <tr><td>Caldera industrial</td><td>80% - 95%</td></tr>
+          <tr><td>Turbina de gas</td><td>30% - 40%</td></tr>
+          <tr><td>Central termoelectrica</td><td>33% - 45%</td></tr>
+        </table>
+      </div>
+
+      <!-- 13. HISTORIAL -->
+      <div class="manual-section" id="historial">
+        <h2>13. Historial de Calculos</h2>
+        <p>La seccion de historial se encuentra debajo de los paneles de calculo y funciona de la siguiente manera:</p>
+        <ul>
+          <li>Cada vez que presionas "Calcular", el resultado se guarda automaticamente.</li>
+          <li>Se almacenan los <strong>ultimos 10 calculos</strong> (los mas recientes arriba).</li>
+          <li>Cada entrada muestra: modulo, hora, resultado y formula usada.</li>
+          <li>El boton <strong>"Limpiar"</strong> borra todo el historial.</li>
+          <li>El historial se pierde al recargar la pagina (no se guarda permanentemente).</li>
+        </ul>
+      </div>
+
+      <!-- 14. TABLA DE REFERENCIA -->
+      <div class="manual-section" id="tabla-referencia">
+        <h2>14. Tabla de Valores de Referencia Rapida</h2>
+
+        <h3>Constantes fisicas</h3>
+        <table class="manual-table">
+          <tr><th>Constante</th><th>Valor</th><th>Unidad</th></tr>
+          <tr><td>Gravedad terrestre (g)</td><td>9.8</td><td>m/s&sup2;</td></tr>
+          <tr><td>Presion atmosferica</td><td>101,325</td><td>Pa</td></tr>
+          <tr><td>Cero absoluto</td><td>-273.15</td><td>&deg;C</td></tr>
+          <tr><td>Calor especifico del agua</td><td>4,186</td><td>J/(kg&middot;&deg;C)</td></tr>
+          <tr><td>Densidad del agua</td><td>1,000</td><td>kg/m&sup3;</td></tr>
+        </table>
+
+        <h3>Prefijos de unidades</h3>
+        <table class="manual-table">
+          <tr><th>Prefijo</th><th>Simbolo</th><th>Factor</th><th>Ejemplo</th></tr>
+          <tr><td>kilo</td><td>k</td><td>1,000</td><td>1 kJ = 1,000 J</td></tr>
+          <tr><td>mega</td><td>M</td><td>1,000,000</td><td>1 MPa = 1,000,000 Pa</td></tr>
+          <tr><td>giga</td><td>G</td><td>1,000,000,000</td><td>1 GJ = 1,000,000,000 J</td></tr>
+          <tr><td>mili</td><td>m</td><td>0.001</td><td>1 mm = 0.001 m</td></tr>
+          <tr><td>centi</td><td>c</td><td>0.01</td><td>1 cm = 0.01 m</td></tr>
+        </table>
+      </div>
+
+      <!-- 15. ERRORES -->
+      <div class="manual-section" id="errores">
+        <h2>15. Mensajes de Error Comunes</h2>
+        <table class="manual-table">
+          <tr><th>Mensaje</th><th>Causa</th><th>Solucion</th></tr>
+          <tr><td>Debe ser mayor que cero</td><td>Ingresaste 0 o un valor negativo en un campo que no lo permite</td><td>Escribe un valor positivo</td></tr>
+          <tr><td>No puede ser cero</td><td>El campo es un denominador en la formula y causaria division por cero</td><td>Ingresa un valor distinto de cero</td></tr>
+          <tr><td>No puede ser negativo</td><td>Magnitudes fisicas como area, masa o volumen no pueden ser negativas</td><td>Verifica el signo del valor</td></tr>
+          <tr><td>Kelvin no puede ser negativo</td><td>La escala Kelvin empieza en 0 (cero absoluto)</td><td>Ingresa un valor &ge; 0</td></tr>
+          <tr><td>Minimo: -273.15 &deg;C</td><td>No existe temperatura menor al cero absoluto</td><td>Verifica tu valor de temperatura</td></tr>
+          <tr><td>Maximo: 100</td><td>La eficiencia no puede superar el 100%</td><td>Verifica los valores de energia</td></tr>
+          <tr><td>Eutil no puede superar Etotal</td><td>Viola la ley de conservacion de energia</td><td>La energia util debe ser menor o igual a la total</td></tr>
+          <tr><td>Max ~24.8 m/s&sup2; (Jupiter)</td><td>El valor de gravedad es irreal</td><td>Usa un valor entre 0.1 y 30</td></tr>
+          <tr><td>Valor no valido</td><td>El campo contiene texto o caracteres no numericos</td><td>Ingresa solo numeros</td></tr>
+        </table>
+      </div>
+
+      <!-- 16. FAQ -->
+      <div class="manual-section" id="faq">
+        <h2>16. Preguntas Frecuentes</h2>
+
+        <div class="faq-item">
+          <h4>¿Por que el boton esta en gris y no puedo hacer clic?</h4>
+          <p>El boton se habilita solo cuando todos los campos requeridos tienen valores validos. Revisa si algun campo tiene borde rojo o esta vacio.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>¿Puedo usar decimales?</h4>
+          <p>Si. Usa el punto (.) como separador decimal. Ejemplo: 0.05, 3.14, 9.81.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>¿Que pasa si obtengo un resultado negativo en Calor?</h4>
+          <p>Es correcto. Un Q negativo significa que el sistema <em>libera</em> calor (enfriamiento). Ocurre cuando &Delta;T es negativo.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>¿Se guardan mis calculos permanentemente?</h4>
+          <p>No. El historial se pierde al cerrar o recargar la pagina. Es solo una referencia temporal.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>¿Necesito internet para usar la calculadora?</h4>
+          <p>Solo para cargar la pagina. Una vez abierta, funciona sin conexion.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>¿Puedo usarla desde el celular?</h4>
+          <p>Si. El diseno es responsive y se adapta a cualquier tamano de pantalla.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>¿Por que el campo tiene fondo verde y no puedo escribir en el?</h4>
+          <p>Ese es el campo de la variable que estas resolviendo (el resultado). Si quieres ingresar un valor ahi, cambia la opcion en "Resolver para:".</p>
+        </div>
+      </div>
+
+    </div><!-- /manual-body -->
+  </div><!-- /manual -->
+
+  <footer class="footer">
+    <p>&copy; 2026 <span>PhysCalc Pro</span> &mdash; Proyecto SENA | TecnoIndustria S.A.S.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -13,16 +13,17 @@
     <a href="index.html" class="logo">Phys<span>Calc</span> Pro</a>
     <button class="nav-toggle" aria-label="Menu">&#9776;</button>
     <nav>
-      <a href="index.html" class="back-link">&#8592; Volver al Blog</a>
+      <a href="index.html">Inicio</a>
+      <a href="manual-usuario.html">Manual</a>
+      <a href="manual-tecnico.html">Tecnico</a>
     </nav>
   </header>
 
   <div class="app-container">
 
-    <!-- HEADER -->
     <div class="app-header">
       <h1>Calculadora de Propiedades Fisicas</h1>
-      <p>Selecciona un modulo para comenzar</p>
+      <p>Selecciona un modulo, elige la variable a resolver e ingresa los datos conocidos</p>
     </div>
 
     <!-- TABS -->
@@ -36,211 +37,342 @@
       <button class="calc-tab" data-target="panel-eficiencia">Eficiencia</button>
     </div>
 
-    <!-- PANELS -->
     <div class="calc-panels">
 
-      <!-- 1. CALOR -->
+      <!-- ==================== 1. CALOR ==================== -->
       <div class="calc-panel active" id="panel-calor">
         <h2>Calor (Energia Termica)</h2>
         <div class="formula-display">Q = m &middot; c &middot; &Delta;T</div>
-        <p class="description">Calcula la energia termica necesaria para calentar o enfriar una sustancia en procesos industriales. Ideal para control de temperatura en hornos, calderas y sistemas de enfriamiento.</p>
+        <p class="description">
+          Calcula la cantidad de energia termica (en Joules) que se necesita para calentar o enfriar una sustancia.
+          Relaciona la masa del material, su calor especifico (propiedad que indica cuanta energia necesita para cambiar 1°C)
+          y el cambio de temperatura deseado. Se aplica en hornos, calderas, intercambiadores de calor y sistemas de enfriamiento industrial.
+          Si el resultado es negativo, significa que el sistema libera calor (enfriamiento).
+        </p>
+
+        <div class="solve-for-group">
+          <label for="calor-solve">Resolver para:</label>
+          <select id="calor-solve" class="solve-for-select" aria-label="Variable a resolver">
+            <option value="Q" selected>Q &mdash; Calor en Joules (J)</option>
+            <option value="m">m &mdash; Masa en kilogramos (kg)</option>
+            <option value="c">c &mdash; Calor especifico en J/(kg&middot;&deg;C)</option>
+            <option value="dT">&Delta;T &mdash; Cambio de temperatura en &deg;C</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="calor-q">Calor (Q) &mdash; en Joules (J)</label>
+          <input type="number" id="calor-q" step="any">
+          <small>Energia termica total. Puede ser negativo si el sistema se enfria.</small>
+        </div>
 
         <div class="input-row">
           <div class="form-group">
-            <label for="calor-m">Masa (m)</label>
-            <input type="number" id="calor-m" placeholder="Ej: 10" step="any">
-            <small>en kilogramos (kg)</small>
+            <label for="calor-m">Masa (m) &mdash; en kilogramos (kg)</label>
+            <input type="number" id="calor-m" step="any" min="0.0001">
+            <small>Debe ser mayor que cero.</small>
           </div>
           <div class="form-group">
-            <label for="calor-c">Calor especifico (c)</label>
-            <input type="number" id="calor-c" placeholder="Ej: 4186" step="any" value="4186">
-            <small>en J/(kg&middot;&deg;C) &mdash; Agua: 4186</small>
+            <label for="calor-c">Calor especifico (c) &mdash; en J/(kg&middot;&deg;C)</label>
+            <input type="number" id="calor-c" step="any" min="0.0001" value="4186">
+            <small>Agua: 4186 | Hierro: 450 | Cobre: 385 | Aluminio: 897</small>
           </div>
         </div>
+
         <div class="form-group">
-          <label for="calor-dt">Cambio de temperatura (&Delta;T)</label>
-          <input type="number" id="calor-dt" placeholder="Ej: 25" step="any">
-          <small>en grados Celsius (&deg;C)</small>
+          <label for="calor-dt">Cambio de temperatura (&Delta;T) &mdash; en &deg;C</label>
+          <input type="number" id="calor-dt" step="any">
+          <small>Diferencia entre temperatura final e inicial. Negativo = enfriamiento.</small>
         </div>
 
-        <button class="btn-calc" onclick="calcCalor()">Calcular Calor</button>
+        <button class="btn-calc" onclick="calcFormula('panel-calor')" disabled>Calcular Calor</button>
 
-        <div class="result-box">
+        <div class="result-box" aria-live="polite">
           <div class="result-label"></div>
           <div class="result-value"></div>
           <div class="result-detail"></div>
         </div>
       </div>
 
-      <!-- 2. TEMPERATURA -->
+      <!-- ==================== 2. TEMPERATURA ==================== -->
       <div class="calc-panel" id="panel-temp">
         <h2>Conversion de Temperatura</h2>
         <div class="formula-display">&deg;C = (&deg;F - 32) / 1.8 &nbsp;|&nbsp; K = &deg;C + 273.15</div>
-        <p class="description">Convierte entre escalas Celsius, Fahrenheit y Kelvin. Esencial para monitoreo y control de condiciones termicas en diferentes equipos y estandares internacionales.</p>
+        <p class="description">
+          Convierte un valor de temperatura entre las tres escalas mas usadas: Celsius (&deg;C), Fahrenheit (&deg;F) y Kelvin (K).
+          Celsius se usa en la mayoria de paises y procesos industriales. Fahrenheit se usa en Estados Unidos.
+          Kelvin es la escala absoluta usada en ciencia e ingenieria (0 K = -273.15 &deg;C es la temperatura mas baja posible).
+          Ninguna temperatura puede estar por debajo del cero absoluto.
+        </p>
 
         <div class="input-row">
           <div class="form-group">
-            <label for="temp-val">Valor de temperatura</label>
-            <input type="number" id="temp-val" placeholder="Ej: 100" step="any">
-          </div>
-          <div class="form-group">
-            <label for="temp-from">Escala de origen</label>
+            <label for="temp-from">Escala de la temperatura que vas a ingresar</label>
             <select id="temp-from">
               <option value="C">Celsius (&deg;C)</option>
               <option value="F">Fahrenheit (&deg;F)</option>
               <option value="K">Kelvin (K)</option>
             </select>
+            <small>Selecciona primero en que escala esta tu dato.</small>
+          </div>
+          <div class="form-group">
+            <label for="temp-val">Valor de temperatura (en la escala seleccionada)</label>
+            <input type="number" id="temp-val" placeholder="Ej: 100" step="any">
+            <small>Min segun escala: -273.15 &deg;C | -459.67 &deg;F | 0 K</small>
           </div>
         </div>
 
-        <button class="btn-calc" onclick="calcTemp()">Convertir</button>
+        <button class="btn-calc" onclick="calcTemp()" disabled>Convertir Temperatura</button>
 
-        <div class="result-box">
+        <div class="result-box" aria-live="polite">
           <div class="result-label"></div>
           <div class="result-value"></div>
           <div class="result-detail"></div>
         </div>
       </div>
 
-      <!-- 3. PRESION -->
+      <!-- ==================== 3. PRESION ==================== -->
       <div class="calc-panel" id="panel-presion">
         <h2>Presion</h2>
         <div class="formula-display">P = F / A</div>
-        <p class="description">Calcula la presion ejercida por una fuerza sobre un area. Fundamental para el diseno y monitoreo de sistemas hidraulicos, neumaticos y maquinaria industrial.</p>
+        <p class="description">
+          Calcula la presion que ejerce una fuerza sobre una superficie. La presion se mide en Pascales (Pa),
+          donde 1 Pa = 1 N/m². Puedes resolver para la presion, la fuerza necesaria o el area requerida.
+          Se aplica en sistemas hidraulicos, neumaticos, prensas industriales y maquinaria pesada.
+          Referencia: 1 atmosfera = 101,325 Pa.
+        </p>
+
+        <div class="solve-for-group">
+          <label for="presion-solve">Resolver para:</label>
+          <select id="presion-solve" class="solve-for-select">
+            <option value="P" selected>P &mdash; Presion en Pascales (Pa)</option>
+            <option value="F">F &mdash; Fuerza en Newtons (N)</option>
+            <option value="A">A &mdash; Area en metros cuadrados (m&sup2;)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="presion-p">Presion (P) &mdash; en Pascales (Pa)</label>
+          <input type="number" id="presion-p" step="any" min="0">
+          <small>1 atm = 101325 Pa | 1 bar = 100000 Pa</small>
+        </div>
 
         <div class="input-row">
           <div class="form-group">
-            <label for="presion-f">Fuerza (F)</label>
-            <input type="number" id="presion-f" placeholder="Ej: 500" step="any">
-            <small>en Newtons (N)</small>
+            <label for="presion-f">Fuerza (F) &mdash; en Newtons (N)</label>
+            <input type="number" id="presion-f" step="any" min="0">
+            <small>Magnitud de la fuerza aplicada. Debe ser &ge; 0.</small>
           </div>
           <div class="form-group">
-            <label for="presion-a">Area (A)</label>
-            <input type="number" id="presion-a" placeholder="Ej: 0.5" step="any">
-            <small>en metros cuadrados (m&sup2;)</small>
+            <label for="presion-a">Area (A) &mdash; en metros cuadrados (m&sup2;)</label>
+            <input type="number" id="presion-a" step="any" min="0.0001">
+            <small>Superficie sobre la que se aplica la fuerza. Debe ser &gt; 0.</small>
           </div>
         </div>
 
-        <button class="btn-calc" onclick="calcPresion()">Calcular Presion</button>
+        <button class="btn-calc" onclick="calcFormula('panel-presion')" disabled>Calcular Presion</button>
 
-        <div class="result-box">
+        <div class="result-box" aria-live="polite">
           <div class="result-label"></div>
           <div class="result-value"></div>
           <div class="result-detail"></div>
         </div>
       </div>
 
-      <!-- 4. CAUDAL VOLUMETRICO -->
+      <!-- ==================== 4. CAUDAL VOLUMETRICO ==================== -->
       <div class="calc-panel" id="panel-caudal-vol">
         <h2>Caudal Volumetrico</h2>
         <div class="formula-display">Q = V / t</div>
-        <p class="description">Determina el volumen de fluido que pasa por un punto en un tiempo determinado. Clave para el control de flujo en procesos productivos, sistemas de riego y distribucion.</p>
+        <p class="description">
+          Determina el volumen de fluido que pasa por un punto en un tiempo determinado, o viceversa.
+          El caudal se mide en m&sup3;/s. Tambien conocido como flujo volumetrico.
+          Se utiliza para controlar el flujo en procesos productivos, sistemas de riego, distribucion de agua
+          y cualquier sistema de tuberias. Referencia: 1 m&sup3;/s = 1000 litros/s.
+        </p>
 
-        <div class="input-row">
-          <div class="form-group">
-            <label for="caudal-v">Volumen (V)</label>
-            <input type="number" id="caudal-v" placeholder="Ej: 2" step="any">
-            <small>en metros cubicos (m&sup3;)</small>
-          </div>
-          <div class="form-group">
-            <label for="caudal-t">Tiempo (t)</label>
-            <input type="number" id="caudal-t" placeholder="Ej: 10" step="any">
-            <small>en segundos (s)</small>
-          </div>
+        <div class="solve-for-group">
+          <label for="caudalvol-solve">Resolver para:</label>
+          <select id="caudalvol-solve" class="solve-for-select">
+            <option value="Q" selected>Q &mdash; Caudal en m&sup3;/s</option>
+            <option value="V">V &mdash; Volumen en m&sup3;</option>
+            <option value="t">t &mdash; Tiempo en segundos (s)</option>
+          </select>
         </div>
 
-        <button class="btn-calc" onclick="calcCaudalVol()">Calcular Caudal</button>
-
-        <div class="result-box">
-          <div class="result-label"></div>
-          <div class="result-value"></div>
-          <div class="result-detail"></div>
-        </div>
-      </div>
-
-      <!-- 5. CAUDAL A x v -->
-      <div class="calc-panel" id="panel-caudal-av">
-        <h2>Caudal (Area &times; Velocidad)</h2>
-        <div class="formula-display">Q = A &middot; v</div>
-        <p class="description">Relaciona el caudal con la seccion transversal de la tuberia y la velocidad del fluido. Utilizado en el diseno y control de sistemas de tuberias industriales.</p>
-
-        <div class="input-row">
-          <div class="form-group">
-            <label for="caudal-a">Area de seccion (A)</label>
-            <input type="number" id="caudal-a" placeholder="Ej: 0.03" step="any">
-            <small>en metros cuadrados (m&sup2;)</small>
-          </div>
-          <div class="form-group">
-            <label for="caudal-vel">Velocidad del fluido (v)</label>
-            <input type="number" id="caudal-vel" placeholder="Ej: 5" step="any">
-            <small>en metros por segundo (m/s)</small>
-          </div>
-        </div>
-
-        <button class="btn-calc" onclick="calcCaudalAV()">Calcular Caudal</button>
-
-        <div class="result-box">
-          <div class="result-label"></div>
-          <div class="result-value"></div>
-          <div class="result-detail"></div>
-        </div>
-      </div>
-
-      <!-- 6. ENERGIA POTENCIAL -->
-      <div class="calc-panel" id="panel-energia">
-        <h2>Energia Potencial</h2>
-        <div class="formula-display">Ep = m &middot; g &middot; h</div>
-        <p class="description">Calcula la energia almacenada por la posicion de un objeto a cierta altura. Aplicable a sistemas de elevacion, gruas, montacargas y almacenamiento en altura.</p>
-
-        <div class="input-row">
-          <div class="form-group">
-            <label for="ep-m">Masa (m)</label>
-            <input type="number" id="ep-m" placeholder="Ej: 50" step="any">
-            <small>en kilogramos (kg)</small>
-          </div>
-          <div class="form-group">
-            <label for="ep-g">Gravedad (g)</label>
-            <input type="number" id="ep-g" placeholder="9.8" step="any" value="9.8">
-            <small>en m/s&sup2; &mdash; Tierra: 9.8</small>
-          </div>
-        </div>
         <div class="form-group">
-          <label for="ep-h">Altura (h)</label>
-          <input type="number" id="ep-h" placeholder="Ej: 15" step="any">
-          <small>en metros (m)</small>
+          <label for="caudalvol-q">Caudal (Q) &mdash; en m&sup3;/s</label>
+          <input type="number" id="caudalvol-q" step="any" min="0.0001">
+          <small>Volumen de fluido por unidad de tiempo.</small>
         </div>
 
-        <button class="btn-calc" onclick="calcEnergia()">Calcular Energia</button>
+        <div class="input-row">
+          <div class="form-group">
+            <label for="caudalvol-v">Volumen (V) &mdash; en metros cubicos (m&sup3;)</label>
+            <input type="number" id="caudalvol-v" step="any" min="0.0001">
+            <small>Cantidad de fluido que pasa. Debe ser &gt; 0.</small>
+          </div>
+          <div class="form-group">
+            <label for="caudalvol-t">Tiempo (t) &mdash; en segundos (s)</label>
+            <input type="number" id="caudalvol-t" step="any" min="0.0001">
+            <small>Duracion del flujo. Debe ser &gt; 0.</small>
+          </div>
+        </div>
 
-        <div class="result-box">
+        <button class="btn-calc" onclick="calcFormula('panel-caudal-vol')" disabled>Calcular Caudal</button>
+
+        <div class="result-box" aria-live="polite">
           <div class="result-label"></div>
           <div class="result-value"></div>
           <div class="result-detail"></div>
         </div>
       </div>
 
-      <!-- 7. EFICIENCIA ENERGETICA -->
+      <!-- ==================== 5. CAUDAL A×v ==================== -->
+      <div class="calc-panel" id="panel-caudal-av">
+        <h2>Caudal por Area y Velocidad</h2>
+        <div class="formula-display">Q = A &middot; v</div>
+        <p class="description">
+          Calcula el caudal a partir del area de la seccion transversal de una tuberia y la velocidad del fluido,
+          o despeja cualquiera de las tres variables. Se basa en la ecuacion de continuidad para fluidos incompresibles.
+          Se usa en el diseno y dimensionamiento de tuberias, ductos de ventilacion y sistemas de bombeo industrial.
+        </p>
+
+        <div class="solve-for-group">
+          <label for="caudalav-solve">Resolver para:</label>
+          <select id="caudalav-solve" class="solve-for-select">
+            <option value="Q" selected>Q &mdash; Caudal en m&sup3;/s</option>
+            <option value="A">A &mdash; Area de seccion en m&sup2;</option>
+            <option value="v">v &mdash; Velocidad del fluido en m/s</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="caudalav-q">Caudal (Q) &mdash; en m&sup3;/s</label>
+          <input type="number" id="caudalav-q" step="any" min="0.0001">
+          <small>Flujo total que pasa por la tuberia.</small>
+        </div>
+
+        <div class="input-row">
+          <div class="form-group">
+            <label for="caudalav-a">Area de seccion (A) &mdash; en m&sup2;</label>
+            <input type="number" id="caudalav-a" step="any" min="0.0001">
+            <small>Seccion transversal interna de la tuberia. Debe ser &gt; 0.</small>
+          </div>
+          <div class="form-group">
+            <label for="caudalav-v">Velocidad del fluido (v) &mdash; en m/s</label>
+            <input type="number" id="caudalav-v" step="any" min="0.0001">
+            <small>Rapidez con la que se mueve el fluido. Debe ser &gt; 0.</small>
+          </div>
+        </div>
+
+        <button class="btn-calc" onclick="calcFormula('panel-caudal-av')" disabled>Calcular Caudal</button>
+
+        <div class="result-box" aria-live="polite">
+          <div class="result-label"></div>
+          <div class="result-value"></div>
+          <div class="result-detail"></div>
+        </div>
+      </div>
+
+      <!-- ==================== 6. ENERGIA POTENCIAL ==================== -->
+      <div class="calc-panel" id="panel-energia">
+        <h2>Energia Potencial Gravitatoria</h2>
+        <div class="formula-display">Ep = m &middot; g &middot; h</div>
+        <p class="description">
+          Calcula la energia almacenada por un objeto debido a su posicion a cierta altura respecto a un punto de referencia.
+          Se mide en Joules (J). Permite resolver para cualquier variable: la energia, la masa, la gravedad o la altura.
+          Se aplica en gruas, montacargas, sistemas de almacenamiento por bombeo y cualquier sistema de elevacion.
+          Tambien sirve para calcular el trabajo necesario para elevar una carga.
+          Referencia: Tierra 9.8 m/s&sup2; | Luna 1.6 m/s&sup2; | Marte 3.7 m/s&sup2; | Jupiter 24.8 m/s&sup2;.
+        </p>
+
+        <div class="solve-for-group">
+          <label for="energia-solve">Resolver para:</label>
+          <select id="energia-solve" class="solve-for-select">
+            <option value="Ep" selected>Ep &mdash; Energia potencial en Joules (J)</option>
+            <option value="m">m &mdash; Masa en kilogramos (kg)</option>
+            <option value="g">g &mdash; Gravedad en m/s&sup2;</option>
+            <option value="h">h &mdash; Altura en metros (m)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="ep-ep">Energia potencial (Ep) &mdash; en Joules (J)</label>
+          <input type="number" id="ep-ep" step="any" min="0">
+          <small>Energia almacenada por la posicion del objeto.</small>
+        </div>
+
+        <div class="input-row">
+          <div class="form-group">
+            <label for="ep-m">Masa (m) &mdash; en kilogramos (kg)</label>
+            <input type="number" id="ep-m" step="any" min="0.0001">
+            <small>Masa del objeto. Debe ser &gt; 0.</small>
+          </div>
+          <div class="form-group">
+            <label for="ep-g">Gravedad (g) &mdash; en m/s&sup2;</label>
+            <input type="number" id="ep-g" step="any" min="0.1" max="30" value="9.8">
+            <small>Tierra: 9.8 | Luna: 1.6 | Marte: 3.7 | Max: 30</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="ep-h">Altura (h) &mdash; en metros (m)</label>
+          <input type="number" id="ep-h" step="any" min="0">
+          <small>Altura sobre el punto de referencia (suelo). Debe ser &ge; 0.</small>
+        </div>
+
+        <button class="btn-calc" onclick="calcFormula('panel-energia')" disabled>Calcular Energia</button>
+
+        <div class="result-box" aria-live="polite">
+          <div class="result-label"></div>
+          <div class="result-value"></div>
+          <div class="result-detail"></div>
+        </div>
+      </div>
+
+      <!-- ==================== 7. EFICIENCIA ENERGETICA ==================== -->
       <div class="calc-panel" id="panel-eficiencia">
         <h2>Eficiencia Energetica</h2>
         <div class="formula-display">&eta; = (E<sub>util</sub> / E<sub>total</sub>) &times; 100</div>
-        <p class="description">Mide el porcentaje de energia aprovechada respecto a la energia total suministrada. Permite identificar perdidas y optimizar el rendimiento de maquinaria y procesos.</p>
+        <p class="description">
+          Mide el porcentaje de energia aprovechada respecto a la energia total suministrada a un sistema.
+          Permite identificar perdidas y optimizar el rendimiento. Puedes resolver para la eficiencia,
+          la energia util o la energia total. Segun la ley de conservacion de la energia, la eficiencia
+          nunca puede superar el 100% y la energia util no puede ser mayor que la total.
+          Valores tipicos: Motor electrico 85-95% | Motor de combustion 25-40% | Panel solar 15-22% | Bombilla LED 80-90%.
+        </p>
+
+        <div class="solve-for-group">
+          <label for="eficiencia-solve">Resolver para:</label>
+          <select id="eficiencia-solve" class="solve-for-select">
+            <option value="n" selected>&eta; &mdash; Eficiencia en porcentaje (%)</option>
+            <option value="Eu">E<sub>util</sub> &mdash; Energia util en Joules (J)</option>
+            <option value="Et">E<sub>total</sub> &mdash; Energia total en Joules (J)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="ef-n">Eficiencia (&eta;) &mdash; en porcentaje (%)</label>
+          <input type="number" id="ef-n" step="any" min="0" max="100">
+          <small>Rango valido: 0% a 100%. No puede superar el 100%.</small>
+        </div>
 
         <div class="input-row">
           <div class="form-group">
-            <label for="ef-util">Energia util (E<sub>util</sub>)</label>
-            <input type="number" id="ef-util" placeholder="Ej: 7500" step="any">
-            <small>en Joules (J)</small>
+            <label for="ef-util">Energia util (E<sub>util</sub>) &mdash; en Joules (J)</label>
+            <input type="number" id="ef-util" step="any" min="0">
+            <small>Energia efectivamente aprovechada. Debe ser &ge; 0.</small>
           </div>
           <div class="form-group">
-            <label for="ef-total">Energia total (E<sub>total</sub>)</label>
-            <input type="number" id="ef-total" placeholder="Ej: 10000" step="any">
-            <small>en Joules (J)</small>
+            <label for="ef-total">Energia total (E<sub>total</sub>) &mdash; en Joules (J)</label>
+            <input type="number" id="ef-total" step="any" min="0.0001">
+            <small>Energia total suministrada al sistema. Debe ser &gt; 0.</small>
           </div>
         </div>
 
-        <button class="btn-calc" onclick="calcEficiencia()">Calcular Eficiencia</button>
+        <button class="btn-calc" onclick="calcFormula('panel-eficiencia')" disabled>Calcular Eficiencia</button>
 
-        <div class="result-box">
+        <div class="result-box" aria-live="polite">
           <div class="result-label"></div>
           <div class="result-value"></div>
           <div class="result-detail"></div>
@@ -248,9 +380,23 @@
       </div>
 
     </div><!-- /calc-panels -->
+
+    <!-- HISTORIAL -->
+    <div class="history-section">
+      <div class="history-card">
+        <div class="history-title">
+          <h3>Historial de calculos (ultimos 10)</h3>
+          <button class="btn-clear-history" onclick="clearHistory()">Limpiar</button>
+        </div>
+        <div id="history-list"></div>
+        <div id="history-empty" class="history-empty">
+          Aun no hay calculos. Ingresa valores validos y presiona el boton para calcular.
+        </div>
+      </div>
+    </div>
+
   </div><!-- /app-container -->
 
-  <!-- FOOTER -->
   <footer class="footer">
     <p>&copy; 2026 <span>PhysCalc Pro</span> &mdash; Proyecto SENA | TecnoIndustria S.A.S.</p>
   </footer>

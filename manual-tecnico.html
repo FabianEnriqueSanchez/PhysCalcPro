@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhysCalc Pro - Manual Tecnico</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/manual.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">Phys<span>Calc</span> Pro</a>
+    <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="app.html">Calculadora</a>
+      <a href="manual-usuario.html">Manual de Usuario</a>
+    </nav>
+  </header>
+
+  <div class="manual">
+
+    <div class="manual-hero technical">
+      <h1>Manual Tecnico</h1>
+      <p>PhysCalc Pro &mdash; Documentacion de Arquitectura, Codigo y Despliegue</p>
+      <div class="manual-meta">
+        <span>Version 1.0</span>
+        <span>|</span>
+        <span>Abril 2026</span>
+        <span>|</span>
+        <span>TecnoIndustria S.A.S.</span>
+      </div>
+    </div>
+
+    <div class="manual-body">
+
+      <!-- INDICE -->
+      <div class="manual-section" id="indice">
+        <h2>Tabla de Contenido</h2>
+        <ol class="toc">
+          <li><a href="#t-overview">Descripcion general del sistema</a></li>
+          <li><a href="#t-stack">Stack tecnologico</a></li>
+          <li><a href="#t-estructura">Estructura de archivos</a></li>
+          <li><a href="#t-arquitectura">Arquitectura del software</a></li>
+          <li><a href="#t-html">Capa de presentacion (HTML)</a></li>
+          <li><a href="#t-css">Capa de estilos (CSS)</a></li>
+          <li><a href="#t-js">Capa de logica (JavaScript)</a></li>
+          <li><a href="#t-config">Sistema de configuracion de formulas</a></li>
+          <li><a href="#t-validacion">Sistema de validacion</a></li>
+          <li><a href="#t-flujo">Flujo de datos</a></li>
+          <li><a href="#t-despliegue">Despliegue en GitHub Pages</a></li>
+          <li><a href="#t-seguridad">Consideraciones de seguridad</a></li>
+          <li><a href="#t-rendimiento">Rendimiento</a></li>
+          <li><a href="#t-accesibilidad">Accesibilidad</a></li>
+          <li><a href="#t-mantenimiento">Guia de mantenimiento</a></li>
+          <li><a href="#t-extensibilidad">Como agregar un nuevo modulo</a></li>
+        </ol>
+      </div>
+
+      <!-- 1. OVERVIEW -->
+      <div class="manual-section" id="t-overview">
+        <h2>1. Descripcion General del Sistema</h2>
+        <table class="manual-table">
+          <tr><th>Atributo</th><th>Valor</th></tr>
+          <tr><td>Nombre</td><td>PhysCalc Pro</td></tr>
+          <tr><td>Tipo</td><td>Aplicacion web estatica (SPA-like)</td></tr>
+          <tr><td>Proposito</td><td>Calculadora de propiedades fisicas industriales con 7 modulos</td></tr>
+          <tr><td>Cliente</td><td>TecnoIndustria S.A.S.</td></tr>
+          <tr><td>Usuarios objetivo</td><td>Ingenieros, tecnicos y operarios de planta</td></tr>
+          <tr><td>Backend</td><td>Ninguno (100% client-side)</td></tr>
+          <tr><td>Base de datos</td><td>Ninguna</td></tr>
+          <tr><td>Dependencias externas</td><td>Ninguna (cero frameworks, cero librerias)</td></tr>
+          <tr><td>Compatibilidad</td><td>Chrome 80+, Firefox 75+, Edge 80+, Safari 13+</td></tr>
+        </table>
+      </div>
+
+      <!-- 2. STACK -->
+      <div class="manual-section" id="t-stack">
+        <h2>2. Stack Tecnologico</h2>
+        <table class="manual-table">
+          <tr><th>Capa</th><th>Tecnologia</th><th>Version</th><th>Justificacion</th></tr>
+          <tr><td>Estructura</td><td>HTML5</td><td>5</td><td>Semantico, accesible, estandar web</td></tr>
+          <tr><td>Estilos</td><td>CSS3</td><td>3</td><td>Variables CSS, grid, flexbox, animaciones nativas</td></tr>
+          <tr><td>Logica</td><td>JavaScript</td><td>ES6+</td><td>Vanilla JS sin dependencias para maxima portabilidad</td></tr>
+          <tr><td>Hosting</td><td>GitHub Pages</td><td>-</td><td>Gratuito, HTTPS, CDN global, despliegue desde repositorio</td></tr>
+          <tr><td>Control de versiones</td><td>Git</td><td>2.x+</td><td>Versionado estandar de la industria</td></tr>
+        </table>
+
+        <div class="manual-tip">
+          <strong>Decisiones de diseno:</strong> Se eligio Vanilla JS (sin React, Vue, Angular ni jQuery) para
+          garantizar: cero dependencias, carga instantanea, facil mantenimiento y portabilidad total. El proyecto
+          funciona abriendo el HTML directamente desde el sistema de archivos.
+        </div>
+      </div>
+
+      <!-- 3. ESTRUCTURA -->
+      <div class="manual-section" id="t-estructura">
+        <h2>3. Estructura de Archivos</h2>
+        <pre class="code-block">
+PhysCalc-Pro/
+|
+|-- index.html              # Landing page / blog del proyecto
+|-- app.html                # Aplicacion de calculadora (7 modulos)
+|-- manual-usuario.html     # Manual de usuario
+|-- manual-tecnico.html     # Manual tecnico (este archivo)
+|
+|-- css/
+|   |-- style.css           # Estilos principales (app + blog)
+|   |-- manual.css          # Estilos de los manuales
+|
+|-- js/
+|   |-- app.js              # Logica completa de la calculadora
+|
+|-- img/                    # Directorio para imagenes (vacio por defecto)
+|
+|-- README.md               # Documentacion del repositorio
+        </pre>
+
+        <h3>Tamano de archivos</h3>
+        <table class="manual-table">
+          <tr><th>Archivo</th><th>Lineas aprox.</th><th>Funcion</th></tr>
+          <tr><td>app.html</td><td>~400</td><td>Estructura de los 7 paneles + historial</td></tr>
+          <tr><td>js/app.js</td><td>~490</td><td>Config de formulas, motor generico, validacion, historial</td></tr>
+          <tr><td>css/style.css</td><td>~650</td><td>Todos los estilos (blog + app + responsive)</td></tr>
+          <tr><td>index.html</td><td>~220</td><td>Blog / landing page</td></tr>
+        </table>
+      </div>
+
+      <!-- 4. ARQUITECTURA -->
+      <div class="manual-section" id="t-arquitectura">
+        <h2>4. Arquitectura del Software</h2>
+        <p>El sistema sigue un patron <strong>Config-Driven</strong> donde la logica de cada formula se define
+        como datos, no como codigo imperativo.</p>
+
+        <pre class="code-block">
++--------------------------+
+|        app.html          |   Capa de Presentacion
+|  (Estructura + Paneles)  |   - HTML semantico
++--------------------------+   - Selectores, inputs, botones
+            |
+            v
++--------------------------+
+|       style.css          |   Capa de Estilos
+|  (Visual + Responsive)   |   - Variables CSS
++--------------------------+   - Grid/Flexbox responsive
+            |                  - Estados (error, target, disabled)
+            v
++--------------------------+
+|        app.js            |   Capa de Logica
+|                          |
+|  +--------------------+  |
+|  | FORMULAS (config)  |  |   Configuracion declarativa:
+|  | - variables        |  |   - Variables con restricciones
+|  | - solve functions  |  |   - Funciones de calculo
+|  | - denominators     |  |   - Denominadores para div/0
+|  | - labels           |  |   - Labels de botones
+|  +--------------------+  |
+|           |               |
+|  +--------------------+  |
+|  | Motor generico     |  |   Funciones genericas:
+|  | - onSolveForChange |  |   - Cambio de variable objetivo
+|  | - validateFormula  |  |   - Validacion en tiempo real
+|  | - calcFormula      |  |   - Calculo y resultado
+|  +--------------------+  |
+|           |               |
+|  +--------------------+  |
+|  | Utilidades         |  |   Funciones compartidas:
+|  | - Field errors     |  |   - Manejo de errores en campos
+|  | - History          |  |   - Historial de calculos
+|  | - Tabs             |  |   - Navegacion por pestanas
+|  +--------------------+  |
++--------------------------+
+        </pre>
+      </div>
+
+      <!-- 5. HTML -->
+      <div class="manual-section" id="t-html">
+        <h2>5. Capa de Presentacion (HTML)</h2>
+
+        <h3>Estructura de un panel de calculo</h3>
+        <p>Cada panel sigue esta estructura estandar:</p>
+        <pre class="code-block">
+&lt;div class="calc-panel" id="panel-{modulo}"&gt;
+  &lt;h2&gt;Titulo del modulo&lt;/h2&gt;
+  &lt;div class="formula-display"&gt;Formula&lt;/div&gt;
+  &lt;p class="description"&gt;Descripcion detallada...&lt;/p&gt;
+
+  &lt;!-- Selector de variable a resolver --&gt;
+  &lt;div class="solve-for-group"&gt;
+    &lt;label&gt;Resolver para:&lt;/label&gt;
+    &lt;select id="{modulo}-solve" class="solve-for-select"&gt;
+      &lt;option value="var1"&gt;...&lt;/option&gt;
+      &lt;option value="var2"&gt;...&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Campos para TODAS las variables --&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="{id}"&gt;Variable (simbolo) - unidad&lt;/label&gt;
+    &lt;input type="number" id="{id}" step="any"&gt;
+    &lt;small&gt;Descripcion y restricciones&lt;/small&gt;
+  &lt;/div&gt;
+
+  &lt;button class="btn-calc" onclick="calcFormula('panel-{modulo}')"&gt;
+    Calcular {variable}
+  &lt;/button&gt;
+
+  &lt;div class="result-box" aria-live="polite"&gt;
+    &lt;div class="result-label"&gt;&lt;/div&gt;
+    &lt;div class="result-value"&gt;&lt;/div&gt;
+    &lt;div class="result-detail"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+        </pre>
+
+        <h3>Convencion de IDs</h3>
+        <table class="manual-table">
+          <tr><th>Elemento</th><th>Patron de ID</th><th>Ejemplo</th></tr>
+          <tr><td>Panel</td><td><code>panel-{modulo}</code></td><td><code>panel-calor</code></td></tr>
+          <tr><td>Selector resolver</td><td><code>{modulo}-solve</code></td><td><code>calor-solve</code></td></tr>
+          <tr><td>Input de variable</td><td><code>{modulo}-{var}</code></td><td><code>calor-m</code>, <code>calor-q</code></td></tr>
+        </table>
+      </div>
+
+      <!-- 6. CSS -->
+      <div class="manual-section" id="t-css">
+        <h2>6. Capa de Estilos (CSS)</h2>
+
+        <h3>Variables CSS (custom properties)</h3>
+        <pre class="code-block">
+:root {
+  --primary: #0d6efd;       /* Azul principal */
+  --primary-dark: #0a58ca;  /* Azul hover */
+  --accent: #00c853;        /* Verde acentuado */
+  --dark: #1a1a2e;          /* Fondo oscuro */
+  --dark2: #16213e;         /* Fondo oscuro secundario */
+  --light: #f8f9fa;         /* Fondo claro */
+  --gray: #6c757d;          /* Texto secundario */
+  --white: #ffffff;
+  --shadow: 0 4px 20px rgba(0,0,0,0.1);
+  --radius: 12px;
+}
+        </pre>
+
+        <h3>Estados de los inputs</h3>
+        <table class="manual-table">
+          <tr><th>Estado</th><th>Clase CSS</th><th>Visual</th></tr>
+          <tr><td>Normal</td><td>(ninguna)</td><td>Borde gris #e0e0e0, fondo #fafafa</td></tr>
+          <tr><td>Enfocado</td><td><code>:focus</code></td><td>Borde azul, fondo blanco</td></tr>
+          <tr><td>Error</td><td><code>.input-error</code></td><td>Borde rojo #e53935, fondo #fff5f5, animacion shake</td></tr>
+          <tr><td>Campo objetivo</td><td><code>.solve-target</code></td><td>Borde verde punteado, fondo verde claro, readonly</td></tr>
+          <tr><td>Boton deshabilitado</td><td><code>:disabled</code></td><td>Fondo gris #b0bec5, cursor not-allowed</td></tr>
+        </table>
+
+        <h3>Responsive breakpoints</h3>
+        <table class="manual-table">
+          <tr><th>Breakpoint</th><th>Cambio</th></tr>
+          <tr><td><code>768px</code></td><td>Navbar se convierte en menu hamburguesa</td></tr>
+          <tr><td><code>500px</code></td><td>Input-row pasa de 2 columnas a 1 columna</td></tr>
+        </table>
+      </div>
+
+      <!-- 7. JS -->
+      <div class="manual-section" id="t-js">
+        <h2>7. Capa de Logica (JavaScript)</h2>
+
+        <h3>Funciones utilitarias</h3>
+        <table class="manual-table">
+          <tr><th>Funcion</th><th>Parametros</th><th>Retorno</th><th>Descripcion</th></tr>
+          <tr><td><code>getVal(id)</code></td><td>ID del input</td><td><code>number | null</code></td><td>Lee y parsea el valor de un input. Retorna null si vacio o NaN.</td></tr>
+          <tr><td><code>isEmpty(id)</code></td><td>ID del input</td><td><code>boolean</code></td><td>Verifica si el campo esta vacio.</td></tr>
+          <tr><td><code>formatNum(n)</code></td><td>Numero</td><td><code>string</code></td><td>Formatea a max 4 decimales, elimina ceros finales.</td></tr>
+          <tr><td><code>setFieldError(id, msg)</code></td><td>ID, mensaje</td><td>void</td><td>Agrega clase .input-error y mensaje de error al campo.</td></tr>
+          <tr><td><code>clearFieldError(id)</code></td><td>ID</td><td>void</td><td>Remueve error visual y mensaje del campo.</td></tr>
+          <tr><td><code>setBtn(panelId, enabled, text)</code></td><td>Panel, estado, texto</td><td>void</td><td>Habilita/deshabilita boton y cambia su texto.</td></tr>
+          <tr><td><code>showResult(...)</code></td><td>Panel, label, value, unit, detail</td><td>void</td><td>Muestra resultado en la caja verde.</td></tr>
+        </table>
+
+        <h3>Funciones del motor generico</h3>
+        <table class="manual-table">
+          <tr><th>Funcion</th><th>Descripcion</th></tr>
+          <tr><td><code>onSolveForChange(panelId)</code></td><td>Se ejecuta al cambiar el selector "Resolver para". Configura readonly en el campo objetivo, restaura defaults en los demas, actualiza la formula mostrada y el texto del boton.</td></tr>
+          <tr><td><code>validateFormula(panelId)</code></td><td>Valida todos los campos de entrada (excepto el objetivo) en tiempo real. Aplica restricciones de positive, notZero, min, max y denominador. Habilita/deshabilita el boton.</td></tr>
+          <tr><td><code>calcFormula(panelId)</code></td><td>Lee los valores, ejecuta la funcion solve correspondiente, escribe el resultado en el campo objetivo y en la result-box, y guarda en el historial.</td></tr>
+        </table>
+
+        <h3>Funciones del historial</h3>
+        <table class="manual-table">
+          <tr><th>Funcion</th><th>Descripcion</th></tr>
+          <tr><td><code>addToHistory(module, formula, result, detail)</code></td><td>Agrega una entrada al inicio del array (max 10).</td></tr>
+          <tr><td><code>renderHistory()</code></td><td>Renderiza el HTML del historial.</td></tr>
+          <tr><td><code>clearHistory()</code></td><td>Vacia el array y re-renderiza.</td></tr>
+        </table>
+      </div>
+
+      <!-- 8. CONFIG -->
+      <div class="manual-section" id="t-config">
+        <h2>8. Sistema de Configuracion de Formulas</h2>
+        <p>Cada modulo de calculo esta definido como un objeto en <code>FORMULAS</code>:</p>
+
+        <pre class="code-block">
+FORMULAS['panel-calor'] = {
+  name: 'Calor',                    // Nombre para historial
+  selectId: 'calor-solve',          // ID del &lt;select&gt; "Resolver para"
+
+  variables: {
+    Q: {
+      id: 'calor-q',               // ID del input
+      label: 'Calor (Q)',          // Nombre para UI
+      unit: 'J',                    // Unidad
+      positive: false,              // ¿Debe ser >= 0?
+      notZero: false,               // ¿No puede ser 0?
+      default: null,                // Valor por defecto (null = sin default)
+      min: undefined,               // Valor minimo
+      max: undefined                // Valor maximo
+    },
+    m: { ... },
+    c: { ... },
+    dT: { ... }
+  },
+
+  rearranged: {                     // Formula mostrada segun variable objetivo
+    Q:  'Q = m · c · ΔT',
+    m:  'm = Q / (c · ΔT)',
+    c:  'c = Q / (m · ΔT)',
+    dT: 'ΔT = Q / (m · c)'
+  },
+
+  solve: {                          // Funciones de calculo
+    Q:  (v) => v.m * v.c * v.dT,
+    m:  (v) => v.Q / (v.c * v.dT),
+    c:  (v) => v.Q / (v.m * v.dT),
+    dT: (v) => v.Q / (v.m * v.c)
+  },
+
+  btnLabels: {                      // Texto del boton segun variable
+    Q: 'Calcular Calor',
+    m: 'Calcular Masa', ...
+  },
+
+  denominators: {                   // Variables que son denominador
+    Q: [],                          // Q = m*c*dT (no divide)
+    m: ['c', 'dT'],                 // m = Q/(c*dT) -> c y dT no pueden ser 0
+    c: ['m', 'dT'],
+    dT: ['m', 'c']
+  },
+
+  // Opcionales:
+  postValidate: (target, vals) => { ... }, // Validacion extra
+  postCalc: (target, result, vals) => { ... } // Info extra post-calculo
+};
+        </pre>
+
+        <h3>Propiedades de variables</h3>
+        <table class="manual-table">
+          <tr><th>Propiedad</th><th>Tipo</th><th>Descripcion</th></tr>
+          <tr><td><code>id</code></td><td>string</td><td>ID del elemento input en el DOM</td></tr>
+          <tr><td><code>label</code></td><td>string</td><td>Nombre visible para resultados e historial</td></tr>
+          <tr><td><code>unit</code></td><td>string</td><td>Unidad de medida</td></tr>
+          <tr><td><code>positive</code></td><td>boolean</td><td>Si true, no acepta valores negativos</td></tr>
+          <tr><td><code>notZero</code></td><td>boolean</td><td>Si true, no acepta valor 0</td></tr>
+          <tr><td><code>default</code></td><td>string|null</td><td>Valor precargado (ej: '4186' para agua, '9.8' para gravedad)</td></tr>
+          <tr><td><code>min</code></td><td>number|undefined</td><td>Valor minimo permitido</td></tr>
+          <tr><td><code>max</code></td><td>number|undefined</td><td>Valor maximo permitido</td></tr>
+        </table>
+      </div>
+
+      <!-- 9. VALIDACION -->
+      <div class="manual-section" id="t-validacion">
+        <h2>9. Sistema de Validacion</h2>
+
+        <h3>Capas de validacion</h3>
+        <table class="manual-table">
+          <tr><th>Capa</th><th>Donde</th><th>Que valida</th></tr>
+          <tr><td>1. HTML</td><td>Atributos <code>min</code>, <code>max</code>, <code>step</code></td><td>Primera barrera nativa del navegador</td></tr>
+          <tr><td>2. Tiempo real (JS)</td><td><code>validateFormula()</code> en eventos <code>input</code>/<code>change</code></td><td>Restricciones fisicas por campo individual</td></tr>
+          <tr><td>3. Contexto (JS)</td><td>Verificacion de denominadores</td><td>Division por cero segun la variable objetivo</td></tr>
+          <tr><td>4. Post-validacion</td><td><code>postValidate()</code> opcional</td><td>Reglas entre multiples campos (ej: Eutil &le; Etotal)</td></tr>
+          <tr><td>5. Post-calculo</td><td>Verificacion de <code>isFinite()</code></td><td>Resultado no es Infinity ni NaN</td></tr>
+        </table>
+
+        <h3>Flujo de validacion</h3>
+        <pre class="code-block">
+Usuario escribe en un input
+         |
+         v
+[evento 'input' dispara validateFormula(panelId)]
+         |
+         v
+Para cada variable (excepto la objetivo):
+  - ¿Campo vacio? -> no marcar error, allValid = false
+  - ¿Valor null/NaN? -> error "Valor no valido"
+  - ¿positive && val < 0? -> error "No puede ser negativo"
+  - ¿notZero && val === 0? -> error "No puede ser cero"
+  - ¿val < min? -> error "Minimo: {min}"
+  - ¿val > max? -> error "Maximo: {max}"
+  - ¿Es denominador && val === 0? -> error "No puede ser cero (division)"
+  - Todo OK -> clearFieldError()
+         |
+         v
+[postValidate() si existe] -> validacion cruzada
+         |
+         v
+setBtn(panelId, allValid) -> habilitar/deshabilitar boton
+        </pre>
+
+        <div class="manual-tip">
+          <strong>Principio:</strong> Los campos vacios NO se marcan con error (el usuario aun no ha interactuado).
+          Solo se marcan cuando el usuario ha escrito un valor invalido.
+        </div>
+      </div>
+
+      <!-- 10. FLUJO DE DATOS -->
+      <div class="manual-section" id="t-flujo">
+        <h2>10. Flujo de Datos Completo</h2>
+        <pre class="code-block">
+[Carga de pagina]
+    |
+    v
+DOMContentLoaded -> initAll()
+    |
+    +--> initTabs()               -- Configura pestanas
+    +--> initRealTimeValidation   -- Bind eventos input/change
+    |     |
+    |     +--> Para cada panelId en FORMULAS:
+    |           +--> Bind input/change en cada variable -> validateFormula()
+    |           +--> Bind change en selector -> onSolveForChange()
+    |           +--> onSolveForChange() inicial (estado por defecto)
+    |
+    +--> renderHistory()          -- Historial vacio
+
+[Usuario cambia "Resolver para:"]
+    |
+    v
+onSolveForChange(panelId)
+    |
+    +--> Actualiza formula-display con formula reorganizada
+    +--> Campo objetivo: readonly, placeholder "= ?", clase .solve-target
+    +--> Otros campos: editables, restaurar defaults
+    +--> Actualiza texto del boton
+    +--> Oculta resultado previo
+    +--> Llama validateFormula() para actualizar estado del boton
+
+[Usuario escribe en un campo]
+    |
+    v
+validateFormula(panelId)
+    |
+    +--> Valida cada campo -> setFieldError() o clearFieldError()
+    +--> setBtn(panelId, allValid)
+
+[Usuario presiona "Calcular"]
+    |
+    v
+calcFormula(panelId)
+    |
+    +--> Lee valores de inputs
+    +--> Ejecuta FORMULAS[panelId].solve[target](vals)
+    +--> Verifica isFinite(result)
+    +--> Escribe resultado en campo objetivo
+    +--> Muestra en result-box
+    +--> addToHistory() -> renderHistory()
+        </pre>
+      </div>
+
+      <!-- 11. DESPLIEGUE -->
+      <div class="manual-section" id="t-despliegue">
+        <h2>11. Despliegue en GitHub Pages</h2>
+
+        <h3>Requisitos previos</h3>
+        <ul>
+          <li>Cuenta de GitHub</li>
+          <li>Git instalado localmente</li>
+        </ul>
+
+        <h3>Pasos de despliegue</h3>
+        <pre class="code-block">
+# 1. Crear repositorio en GitHub (nombre: PhysCalc-Pro)
+
+# 2. Vincular repositorio local
+cd C:/Users/Ardisa/TecnoIndustria
+git remote add origin https://github.com/TU-USUARIO/PhysCalc-Pro.git
+git branch -M main
+git push -u origin main
+
+# 3. Configurar GitHub Pages
+# - Ir a Settings > Pages
+# - Source: Deploy from a branch
+# - Branch: main / (root)
+# - Save
+
+# 4. Esperar 1-2 minutos. URL sera:
+# https://TU-USUARIO.github.io/PhysCalc-Pro/
+        </pre>
+
+        <h3>Actualizaciones</h3>
+        <pre class="code-block">
+# Hacer cambios en los archivos, luego:
+git add -A
+git commit -m "Descripcion del cambio"
+git push
+
+# GitHub Pages se actualiza automaticamente en 1-2 minutos
+        </pre>
+      </div>
+
+      <!-- 12. SEGURIDAD -->
+      <div class="manual-section" id="t-seguridad">
+        <h2>12. Consideraciones de Seguridad</h2>
+        <table class="manual-table">
+          <tr><th>Aspecto</th><th>Estado</th><th>Detalle</th></tr>
+          <tr><td>XSS</td><td>Protegido</td><td>No se usa <code>innerHTML</code> con datos del usuario. El historial usa datos calculados internamente, no input directo.</td></tr>
+          <tr><td>Inyeccion SQL</td><td>N/A</td><td>No hay base de datos.</td></tr>
+          <tr><td>HTTPS</td><td>Si (GitHub Pages)</td><td>Certificado SSL gratuito incluido.</td></tr>
+          <tr><td>Datos sensibles</td><td>Ninguno</td><td>No se recopilan datos personales. Todo se procesa en el navegador.</td></tr>
+          <tr><td>Cookies</td><td>Ninguna</td><td>No se usan cookies ni almacenamiento local.</td></tr>
+          <tr><td>eval()</td><td>No se usa</td><td>Las formulas se ejecutan como funciones JavaScript nativas.</td></tr>
+        </table>
+      </div>
+
+      <!-- 13. RENDIMIENTO -->
+      <div class="manual-section" id="t-rendimiento">
+        <h2>13. Rendimiento</h2>
+        <table class="manual-table">
+          <tr><th>Metrica</th><th>Valor estimado</th></tr>
+          <tr><td>Tamano total (sin imagenes)</td><td>~35 KB (sin comprimir)</td></tr>
+          <tr><td>Requests HTTP</td><td>3 (HTML + CSS + JS)</td></tr>
+          <tr><td>Tiempo de carga</td><td>&lt; 1 segundo</td></tr>
+          <tr><td>Dependencias externas</td><td>0</td></tr>
+          <tr><td>Frameworks</td><td>0</td></tr>
+          <tr><td>Tiempo de calculo</td><td>&lt; 1 ms por operacion</td></tr>
+          <tr><td>Funciona offline</td><td>Si (una vez cargada)</td></tr>
+        </table>
+      </div>
+
+      <!-- 14. ACCESIBILIDAD -->
+      <div class="manual-section" id="t-accesibilidad">
+        <h2>14. Accesibilidad</h2>
+        <ul>
+          <li><code>aria-live="polite"</code> en las cajas de resultado para lectores de pantalla.</li>
+          <li><code>aria-label</code> en selectores de formula.</li>
+          <li>Todos los campos tienen <code>&lt;label&gt;</code> asociado via <code>for</code>.</li>
+          <li>Contraste de colores cumple WCAG AA.</li>
+          <li>Navegacion completa por teclado (Tab, Enter, flechas).</li>
+          <li>Elementos interactivos nativos (<code>button</code>, <code>input</code>, <code>select</code>).</li>
+          <li>Responsive desde 320px.</li>
+        </ul>
+      </div>
+
+      <!-- 15. MANTENIMIENTO -->
+      <div class="manual-section" id="t-mantenimiento">
+        <h2>15. Guia de Mantenimiento</h2>
+
+        <h3>Cambiar un valor por defecto</h3>
+        <p>Editar la propiedad <code>default</code> en el objeto <code>FORMULAS</code> en <code>js/app.js</code>.</p>
+
+        <h3>Cambiar restricciones de un campo</h3>
+        <p>Modificar las propiedades <code>positive</code>, <code>notZero</code>, <code>min</code>, <code>max</code> del campo en <code>FORMULAS</code>.</p>
+
+        <h3>Cambiar colores</h3>
+        <p>Editar las variables CSS en <code>:root</code> de <code>css/style.css</code>.</p>
+
+        <h3>Cambiar clasificacion de eficiencia</h3>
+        <p>Modificar la funcion <code>postCalc</code> en <code>FORMULAS['panel-eficiencia']</code>.</p>
+      </div>
+
+      <!-- 16. EXTENSIBILIDAD -->
+      <div class="manual-section" id="t-extensibilidad">
+        <h2>16. Como Agregar un Nuevo Modulo</h2>
+        <p>Pasos para agregar una nueva formula (ej: Ley de Ohm V = I &middot; R):</p>
+
+        <h3>Paso 1: Agregar pestana en app.html</h3>
+        <pre class="code-block">
+&lt;button class="calc-tab" data-target="panel-ohm"&gt;Ley de Ohm&lt;/button&gt;
+        </pre>
+
+        <h3>Paso 2: Agregar panel HTML en app.html</h3>
+        <pre class="code-block">
+&lt;div class="calc-panel" id="panel-ohm"&gt;
+  &lt;h2&gt;Ley de Ohm&lt;/h2&gt;
+  &lt;div class="formula-display"&gt;V = I &middot; R&lt;/div&gt;
+  &lt;p class="description"&gt;...&lt;/p&gt;
+
+  &lt;div class="solve-for-group"&gt;
+    &lt;label for="ohm-solve"&gt;Resolver para:&lt;/label&gt;
+    &lt;select id="ohm-solve" class="solve-for-select"&gt;
+      &lt;option value="V"&gt;V - Voltaje (V)&lt;/option&gt;
+      &lt;option value="I"&gt;I - Corriente (A)&lt;/option&gt;
+      &lt;option value="R"&gt;R - Resistencia (Ω)&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+
+  &lt;div class="form-group"&gt;
+    &lt;label for="ohm-v"&gt;Voltaje (V) - en Voltios (V)&lt;/label&gt;
+    &lt;input type="number" id="ohm-v" step="any"&gt;
+  &lt;/div&gt;
+  &lt;!-- ... campos para I y R ... --&gt;
+
+  &lt;button class="btn-calc" onclick="calcFormula('panel-ohm')" disabled&gt;
+    Calcular
+  &lt;/button&gt;
+  &lt;div class="result-box" aria-live="polite"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+        </pre>
+
+        <h3>Paso 3: Agregar configuracion en js/app.js</h3>
+        <pre class="code-block">
+FORMULAS['panel-ohm'] = {
+  name: 'Ley de Ohm',
+  selectId: 'ohm-solve',
+  variables: {
+    V: { id: 'ohm-v', label: 'Voltaje (V)', unit: 'V',
+         positive: true, notZero: false, default: null },
+    I: { id: 'ohm-i', label: 'Corriente (I)', unit: 'A',
+         positive: true, notZero: true, default: null },
+    R: { id: 'ohm-r', label: 'Resistencia (R)', unit: 'Ω',
+         positive: true, notZero: true, default: null }
+  },
+  rearranged: { V: 'V = I · R', I: 'I = V / R', R: 'R = V / I' },
+  solve: {
+    V: v => v.I * v.R,
+    I: v => v.V / v.R,
+    R: v => v.V / v.I
+  },
+  btnLabels: { V: 'Calcular Voltaje', I: 'Calcular Corriente',
+               R: 'Calcular Resistencia' },
+  denominators: { V: [], I: ['R'], R: ['I'] }
+};
+        </pre>
+
+        <div class="manual-tip">
+          <strong>Eso es todo.</strong> No se necesita modificar ninguna funcion. El motor generico detecta automaticamente
+          el nuevo modulo en el <code>Object.keys(FORMULAS)</code> al inicializar. La validacion, el cambio de
+          variable objetivo, el calculo y el historial funcionan sin codigo adicional.
+        </div>
+      </div>
+
+    </div><!-- /manual-body -->
+  </div><!-- /manual -->
+
+  <footer class="footer">
+    <p>&copy; 2026 <span>PhysCalc Pro</span> &mdash; Proyecto SENA | TecnoIndustria S.A.S.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
